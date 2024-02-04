@@ -1,4 +1,4 @@
-package com.example.multitool.ui.dashboard;
+package com.example.multitool.ui.Alarm;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.multitool.databinding.FragmentDashboardBinding;
+import com.example.multitool.databinding.FragmentAlarmBinding;
 
-public class DashboardFragment extends Fragment {
+public class AlarmFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentAlarmBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        AlarmViewModel alarmViewModel =
+                new ViewModelProvider(this).get(AlarmViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentAlarmBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textNotifications;
+        alarmViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

@@ -1,16 +1,16 @@
-package com.example.multitool.ui.dashboard;
+package com.example.multitool.ui.Schedule;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class ScheduleViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public ScheduleViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is schedule fragment");
     }
 
     public LiveData<String> getText() {
