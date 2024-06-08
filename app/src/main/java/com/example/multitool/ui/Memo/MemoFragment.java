@@ -5,17 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.multitool.AddMemoActivity;
 import com.example.multitool.databinding.FragmentMemoBinding;
+import com.example.multitool.R;
 
 public class MemoFragment extends Fragment {
 
     private FragmentMemoBinding binding;
 
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         MemoViewModel memoViewModel =
@@ -23,10 +29,21 @@ public class MemoFragment extends Fragment {
 
         binding = FragmentMemoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        final TextView textView = binding.textDashboard;
-        memoViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // ボタンの OnClickListener を設定
+        view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddMemoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
