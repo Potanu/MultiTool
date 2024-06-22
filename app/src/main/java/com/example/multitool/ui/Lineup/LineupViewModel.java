@@ -1,16 +1,16 @@
-package com.example.multitool.ui.Memo;
+package com.example.multitool.ui.Lineup;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MemoViewModel extends ViewModel {
+public class LineupViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public MemoViewModel() {
+    public LineupViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is memo fragment");
+        mText.setValue("This is Lineup fragment");
     }
 
     public LiveData<String> getText() {

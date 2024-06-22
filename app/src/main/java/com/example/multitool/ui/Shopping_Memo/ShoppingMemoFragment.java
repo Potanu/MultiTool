@@ -1,31 +1,27 @@
-package com.example.multitool.ui.Alarm;
+package com.example.multitool.ui.Shopping_Memo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.multitool.databinding.FragmentAlarmBinding;
+import com.example.multitool.databinding.FragmentShoppingMemoBinding;
 
-public class AlarmFragment extends Fragment {
+public class ShoppingMemoFragment extends Fragment {
 
-    private FragmentAlarmBinding binding;
+    private FragmentShoppingMemoBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        AlarmViewModel alarmViewModel =
-                new ViewModelProvider(this).get(AlarmViewModel.class);
+        ShoppingMemoViewModel shoppingMemoViewModel =
+                new ViewModelProvider(this).get(ShoppingMemoViewModel.class);
 
-        binding = FragmentAlarmBinding.inflate(inflater, container, false);
+        binding = FragmentShoppingMemoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        final TextView textView = binding.textNotifications;
-        alarmViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

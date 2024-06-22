@@ -1,4 +1,4 @@
-package com.example.multitool.ui.Schedule;
+package com.example.multitool.ui.Lineup;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.multitool.databinding.FragmentScheduleBinding;
+import com.example.multitool.databinding.FragmentLineupBinding;
 
-public class ScheduleFragment extends Fragment {
+public class LineupFragment extends Fragment {
 
-    private FragmentScheduleBinding binding;
+    private FragmentLineupBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ScheduleViewModel scheduleViewModel =
-                new ViewModelProvider(this).get(ScheduleViewModel.class);
+        LineupViewModel lineupViewModel =
+                new ViewModelProvider(this).get(LineupViewModel.class);
 
-        binding = FragmentScheduleBinding.inflate(inflater, container, false);
+        binding = FragmentLineupBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
-        scheduleViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        lineupViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

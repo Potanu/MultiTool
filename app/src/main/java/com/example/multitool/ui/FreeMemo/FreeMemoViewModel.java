@@ -1,16 +1,16 @@
-package com.example.multitool.ui.Alarm;
+package com.example.multitool.ui.FreeMemo;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class AlarmViewModel extends ViewModel {
+public class FreeMemoViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public AlarmViewModel() {
+    public FreeMemoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is alarm fragment");
+        mText.setValue("This is FreeMemo Fragment");
     }
 
     public LiveData<String> getText() {

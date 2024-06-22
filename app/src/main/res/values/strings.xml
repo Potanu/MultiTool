@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">MultiTool</string>
-    <string name="title_memo">Memo</string>
-    <string name="title_schedule">Schedule</string>
-    <string name="title_alarm">Alarm</string>
+    <string name="app_name">お買い物メモ</string>
+    <string name="shopping_memo">ShoppingMemo</string>
+    <string name="lineup">Lineup</string>
+    <string name="free_memo">FreeMemo</string>
     <string name="common_save">保存</string>
-    <string name="common_log">ログ</string>
+    <string name="common_list">一覧</string>
     <string name="speakableText_add">Add</string>
 </resources>

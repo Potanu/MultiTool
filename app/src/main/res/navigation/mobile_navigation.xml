@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_memo"
-        android:name="com.example.multitool.ui.Memo.MemoFragment"
-        android:label="@string/title_memo"
-        tools:layout="@layout/fragment_schedule" />
+        android:name="com.example.multitool.ui.Shopping_Memo.ShoppingMemoFragment"
+        android:label="@string/shopping_memo"
+        tools:layout="@layout/fragment_lineup" />
 
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="com.example.multitool.ui.Schedule.ScheduleFragment"
-        android:label="@string/title_schedule"
-        tools:layout="@layout/fragment_memo" />
+        android:name="com.example.multitool.ui.Lineup.LineupFragment"
+        android:label="@string/lineup"
+        tools:layout="@layout/fragment_shopping_memo" />
 
     <fragment
         android:id="@+id/navigation_alarm"
-        android:name="com.example.multitool.ui.Alarm.AlarmFragment"
-        android:label="@string/title_alarm"
-        tools:layout="@layout/fragment_alarm" />
+        android:name="com.example.multitool.ui.FreeMemo.FreeMemoFragment"
+        android:label="@string/free_memo"
+        tools:layout="@layout/fragment_free_memo" />
 </navigation>

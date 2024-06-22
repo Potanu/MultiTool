@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_memo"
-        android:icon="@drawable/ic_note_black_24dp"
-        android:title="@string/title_memo" />
+        android:icon="@drawable/baseline_checklist_rtl_24"
+        android:title="@string/shopping_memo" />
 
     <item
         android:id="@+id/navigation_schedule"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_schedule" />
+        android:icon="@drawable/baseline_assignment_add_24"
+        android:title="@string/lineup" />
 
     <item
         android:id="@+id/navigation_alarm"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_alarm" />
+        android:icon="@drawable/baseline_dashboard_customize_24"
+        android:title="@string/free_memo" />
 
 </menu>
