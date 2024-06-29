@@ -1,28 +1,26 @@
 package com.example.multitool;
 
-import android.os.Bundle;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
+import com.example.multitool.data.database.ItemCategoriesHelper;
 import com.example.multitool.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private ItemCategoriesHelper itemCategoriesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        itemCategoriesHelper = new ItemCategoriesHelper(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(findViewById(R.id.toolbar));
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -36,4 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    public ItemCategoriesHelper getItemCategoriesHelper() {
+        return itemCategoriesHelper;
+    }
 }
