@@ -1,4 +1,4 @@
-package com.example.multitool.ui.Lineup;
+package com.example.multitool.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.multitool.databinding.FragmentLineupBinding;
+import com.example.multitool.viewmodels.LineupViewModel;
 
 public class LineupFragment extends Fragment {
 

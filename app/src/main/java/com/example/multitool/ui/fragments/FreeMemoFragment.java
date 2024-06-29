@@ -1,4 +1,4 @@
-package com.example.multitool.ui.FreeMemo;
+package com.example.multitool.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.multitool.databinding.FragmentFreeMemoBinding;
+import com.example.multitool.viewmodels.FreeMemoViewModel;
 
 public class FreeMemoFragment extends Fragment {
 

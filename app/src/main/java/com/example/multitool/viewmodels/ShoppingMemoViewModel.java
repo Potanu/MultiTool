@@ -1,4 +1,4 @@
-package com.example.multitool.ui.Shopping_Memo;
+package com.example.multitool.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

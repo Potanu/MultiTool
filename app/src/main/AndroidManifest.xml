@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MultiTool"
         tools:targetApi="31">
         <activity
-            android:name="com.example.shoppingmemo.MainActivity"
+            android:name="com.example.multitool.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

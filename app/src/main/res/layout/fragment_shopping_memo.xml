@@ -5,5 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/button_nav_menu_vertical_size"
-    tools:context=".ui.Shopping_Memo.ShoppingMemoFragment">
+    tools:context=".ui.fragments.ShoppingMemoFragment">
 </androidx.constraintlayout.widget.ConstraintLayout>
