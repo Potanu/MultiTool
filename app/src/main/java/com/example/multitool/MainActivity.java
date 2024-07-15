@@ -7,18 +7,18 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.example.multitool.data.database.ItemCategoriesHelper;
+import com.example.multitool.data.dao.ItemCategoryDao;
 import com.example.multitool.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private ItemCategoriesHelper itemCategoriesHelper;
+    private ItemCategoryDao itemCategoryDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemCategoriesHelper = new ItemCategoriesHelper(this);
+        itemCategoryDao = new ItemCategoryDao(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    public ItemCategoriesHelper getItemCategoriesHelper() {
-        return itemCategoriesHelper;
+    public ItemCategoryDao getIemCategoryDao() {
+        return itemCategoryDao;
     }
 }
