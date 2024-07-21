@@ -25,7 +25,7 @@ public class ShoppingMemoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainActivity mainActivity = (MainActivity) requireActivity();
-        itemCategoryDao = mainActivity.getIemCategoryDao();
+        itemCategoryDao = mainActivity.getItemCategoryDao();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

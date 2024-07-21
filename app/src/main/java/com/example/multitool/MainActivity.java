@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    public ItemCategoryDao getIemCategoryDao() {
+    public ItemCategoryDao getItemCategoryDao() {
         return itemCategoryDao;
     }
 }

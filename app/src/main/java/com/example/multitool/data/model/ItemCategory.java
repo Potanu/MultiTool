@@ -60,7 +60,7 @@ public class ItemCategory {
         this.sortOrder = sortOrder;
     }
 
-    public void setCreatedAt(String createdAt){
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

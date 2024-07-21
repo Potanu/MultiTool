@@ -40,33 +40,45 @@ public class ItemCategoryDao extends DatabaseHelper {
                 + COLUMN_UPDATED_AT
                 + ") VALUES ('未分類', 1, 0, datetime('now'), datetime('now'))";
 
-        db.execSQL(CREATE_TABLE);
-        db.execSQL(DEFAULT_DATA);
+        Runnable action = () -> {
+            db.execSQL(CREATE_TABLE);
+            db.execSQL(DEFAULT_DATA);
+        };
+
+        execTransaction(db, action);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void insertData(String name, int color_id, int sort_order, String created_at, String updated_at) {
+    public void insertData(String name, int color_id, int sort_order) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, name);
-        values.put(COLUMN_COLOR_ID, color_id);
-        values.put(COLUMN_SORT_ORDER, sort_order);
-        values.put(COLUMN_CREATED_ID, created_at);
-        values.put(COLUMN_UPDATED_AT, updated_at);
-        db.insert(TABLE_NAME, null, values);
+        Runnable action = () -> {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_NAME, name);
+            values.put(COLUMN_COLOR_ID, color_id);
+            values.put(COLUMN_SORT_ORDER, sort_order);
+            values.put(COLUMN_CREATED_ID, getCurrentDate());
+            values.put(COLUMN_UPDATED_AT, getCurrentDate());
+            db.insert(TABLE_NAME, null, values);
+        };
+
+        execTransaction(db, action);
     }
 
-    public void updateItem(int id, String name, int color_id, int sort_order, String updated_at) {
+    public void updateItem(int id, String name, int color_id, int sort_order) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, name);
-        values.put(COLUMN_COLOR_ID, color_id);
-        values.put(COLUMN_SORT_ORDER, sort_order);
-        values.put(COLUMN_UPDATED_AT, updated_at);
-        db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        Runnable action = () -> {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_NAME, name);
+            values.put(COLUMN_COLOR_ID, color_id);
+            values.put(COLUMN_SORT_ORDER, sort_order);
+            values.put(COLUMN_UPDATED_AT, getCurrentDate());
+            db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        };
+
+        execTransaction(db, action);
     }
 
     public List<ItemCategory> getAllData() {
