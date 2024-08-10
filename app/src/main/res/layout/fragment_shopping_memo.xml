@@ -5,5 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/button_nav_menu_vertical_size"
-    tools:context=".ui.fragments.ShoppingMemoFragment">
+    tools:context=".ui.fragment.ShoppingMemoFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_vertical_size"
+        android:layout_marginBottom="@dimen/toolbar_vertical_size"/>
+
+    <ImageButton
+        android:id="@+id/addButton"
+        android:layout_width="@dimen/checklist_add_button_size"
+        android:layout_height="@dimen/checklist_add_button_size"
+        android:background="@drawable/baseline_add_circle_24"
+        android:contentDescription="@string/common_remove"
+        android:layout_marginEnd="@dimen/checklist_cell_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
