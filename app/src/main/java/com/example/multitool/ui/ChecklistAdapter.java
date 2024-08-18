@@ -16,8 +16,10 @@ import com.example.multitool.R;
 import com.example.multitool.model.ChecklistItem;
 
 import java.util.List;
+
 public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.ViewHolder> {
     private List<ChecklistItem> checklistItems;
+    private List<ChecklistItem> removeChecklistItems;
 
     public ChecklistAdapter(List<ChecklistItem> checklistItems) {
         this.checklistItems = checklistItems;
@@ -35,7 +37,7 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
         ChecklistItem item = checklistItems.get(position);
 
         // チェックボックスの設定
-        holder.checkBox.setChecked(item.isChecked());
+        holder.checkBox.setChecked(item.getIsChecked() == 1);
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // データモデルを更新する
             checklistItems.get(holder.getAbsoluteAdapterPosition()).setChecked(isChecked);
@@ -47,7 +49,7 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
         });
 
         // EditTextの設定
-        holder.editText.setText(item.getText());
+        holder.editText.setText(item.getName());
         holder.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -60,7 +62,7 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
             @Override
             public void afterTextChanged(Editable s) {
                 // データモデルを更新する
-                checklistItems.get(holder.getAbsoluteAdapterPosition()).setText(s.toString());
+                checklistItems.get(holder.getAbsoluteAdapterPosition()).setName(s.toString());
             }
         });
     }
@@ -70,23 +72,36 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
         return checklistItems.size();
     }
 
-    public void updateChecklistItems(List<ChecklistItem> newItems) {
+    // ShoppingMemoViewModel のchecklistItemsと紐づける
+    public void setChecklistItems(List<ChecklistItem> newItems) {
         this.checklistItems = newItems;
         notifyItemRangeChanged(0, checklistItems.size());
     }
 
-    public void addItem(){
-        ChecklistItem item = new ChecklistItem(false,"");
+    // ShoppingMemoViewModel のremoveItemIdsと紐づける
+    public void setRemoveChecklistItems(List<ChecklistItem> removeItemIds){
+        this.removeChecklistItems = removeItemIds;
+    }
+
+    public void addItem(String createdAt){
+        ChecklistItem item = new ChecklistItem();
         checklistItems.add(item);
         notifyItemInserted(checklistItems.size() - 1);
     }
 
     private void removeItem(int position) {
-        if (position >= 0 && position < checklistItems.size()) {
-            checklistItems.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, checklistItems.size());
+        if (position < 0 || position >= checklistItems.size()) {
+            return;
         }
+
+        int id = checklistItems.get(position).getId();
+        if (id > -1){
+            removeChecklistItems.add(checklistItems.get(position));
+        }
+
+        checklistItems.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, checklistItems.size());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

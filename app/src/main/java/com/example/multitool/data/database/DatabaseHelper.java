@@ -3,16 +3,11 @@ package com.example.multitool.data.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public abstract class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "user.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TIME_ZONE = "Asia/Tokyo";
-    protected final String COLUMN_CREATED_ID = "created_at";
+    protected final String COLUMN_CREATED_AT = "created_at";
     protected final String COLUMN_UPDATED_AT = "updated_at";
 
     public DatabaseHelper(Context context) {
@@ -34,13 +29,6 @@ public abstract class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         } finally {
             db.endTransaction();
-            db.close();
         }
-    }
-
-    protected String getCurrentDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        sdf.setTimeZone(TimeZone.getTimeZone(TIME_ZONE));
-        return sdf.format(new Date());
     }
 }
