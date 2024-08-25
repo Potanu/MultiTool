@@ -11,7 +11,8 @@ import java.util.List;
 
 public class ShoppingMemoViewModel extends ViewModel {
     public List<ChecklistItem> checklistItems;          // チェックリスト一覧のセル
-    public List<ChecklistItem> removeChecklistItems;   // 削除したセルの一覧
+    public List<ChecklistItem> removeChecklistItems;    // 削除したセルの一覧
+    public List<ChecklistItem> logItems;                // ログ一覧
     private ChecklistItemDao checklistItemDao;
 
     public ShoppingMemoViewModel(){}
@@ -19,11 +20,12 @@ public class ShoppingMemoViewModel extends ViewModel {
     public void Init(ChecklistItemDao checklistItemDao){
         this.checklistItemDao = checklistItemDao;
         removeChecklistItems = new ArrayList<>();
-        loadChecklistItem();
+        loadChecklistItems();
+        loadLogItems();
     }
 
     // 未チェックのデータリストを取得する
-    private void loadChecklistItem(){
+    private void loadChecklistItems(){
         // 未チェックかつ未削除のデータを取得する
         String selection = String.format("%s = ? AND %s = ?",
                 checklistItemDao.COLUMN_IS_CHECK,
@@ -31,6 +33,17 @@ public class ShoppingMemoViewModel extends ViewModel {
         String[] selectionArgs = {"0", "0"};
 
         checklistItems = checklistItemDao.getData(null, selection, selectionArgs);
+    }
+
+    // チェック済みのデータリストを取得する
+    private void loadLogItems(){
+        // チェック済みかつ未削除のデータを取得する
+        String selection = String.format("%s = ? AND %s = ?",
+                checklistItemDao.COLUMN_IS_CHECK,
+                checklistItemDao.COLUMN_IS_DELETE);
+        String[] selectionArgs = {"1", "0"};
+
+        logItems = checklistItemDao.getData(null, selection, selectionArgs);
     }
 
     public void saveChecklistItem(){

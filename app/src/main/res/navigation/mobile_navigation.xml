@@ -9,13 +9,13 @@
         android:id="@+id/navigation_shopping_memo"
         android:name="com.example.multitool.ui.fragment.ChecklistFragment"
         android:label="@string/shopping_memo"
-        tools:layout="@layout/fragment_shopping_memo" />
+        tools:layout="@layout/fragment_checklist" />
 
     <fragment
-        android:id="@+id/navigation_lineup"
-        android:name="com.example.multitool.ui.fragment.LineupFragment"
-        android:label="@string/lineup"
-        tools:layout="@layout/fragment_lineup" />
+        android:id="@+id/navigation_log"
+        android:name="com.example.multitool.ui.fragment.LogFragment"
+        android:label="@string/log"
+        tools:layout="@layout/fragment_log" />
 
     <fragment
         android:id="@+id/navigation_free_memo"

@@ -11,9 +11,15 @@
     <!-- fragment_memo -->
     <dimen name="fragment_memo_vertical_margin">10dp</dimen>
 
-    <!-- チェックリスト-->
+    <!-- チェックリスト -->
     <dimen name="checklist_cell_margin">16dp</dimen>
     <dimen name="checklist_textarea_horizontal_margin">30dp</dimen>
     <dimen name="checklist_button_size">30dp</dimen>
     <dimen name="checklist_add_button_size">50dp</dimen>
+
+    <!-- ログリスト -->
+    <dimen name="log_textarea_horizontal_margin">30dp</dimen>
+    <dimen name="log_text_margin">20dp</dimen>
+    <dimen name="log_text_size">14sp</dimen>
+    <dimen name="log_interval_margin">16dp</dimen>
 </resources>

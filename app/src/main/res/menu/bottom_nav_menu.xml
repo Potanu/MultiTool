@@ -7,13 +7,8 @@
         android:title="@string/shopping_memo" />
 
     <item
-        android:id="@+id/navigation_lineup"
+        android:id="@+id/navigation_log"
         android:icon="@drawable/baseline_assignment_add_24"
-        android:title="@string/lineup" />
-
-    <item
-        android:id="@+id/navigation_free_memo"
-        android:icon="@drawable/baseline_dashboard_customize_24"
-        android:title="@string/free_memo" />
-
+        android:title="@string/log" />
+    
 </menu>

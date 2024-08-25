@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multitool.data.dao.ChecklistItemDao;
-import com.example.multitool.databinding.FragmentShoppingMemoBinding;
+import com.example.multitool.databinding.FragmentChecklistBinding;
 import com.example.multitool.util.DataUtil;
 import com.example.multitool.viewmodel.ShoppingMemoViewModel;
 import com.example.multitool.ui.ChecklistAdapter;
@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 public class ChecklistFragment extends Fragment {
     private ShoppingMemoViewModel shoppingMemoViewModel;
-    private ChecklistItemDao checklistItemDao;
-    private FragmentShoppingMemoBinding binding;
+    private FragmentChecklistBinding binding;
     private ChecklistAdapter checklistAdapter;
 
     @Override
@@ -32,13 +31,13 @@ public class ChecklistFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         shoppingMemoViewModel = new ViewModelProvider(requireActivity()).get(ShoppingMemoViewModel.class);
-        checklistItemDao = new ChecklistItemDao(requireActivity());
+        ChecklistItemDao checklistItemDao = new ChecklistItemDao(requireActivity());
         shoppingMemoViewModel.Init(checklistItemDao);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentShoppingMemoBinding.inflate(inflater, container, false);
+        binding = FragmentChecklistBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -50,7 +49,6 @@ public class ChecklistFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         checklistAdapter = new ChecklistAdapter(new ArrayList<>());
         recyclerView.setAdapter(checklistAdapter);
-
 
         checklistAdapter.setChecklistItems(shoppingMemoViewModel.checklistItems);
         checklistAdapter.setRemoveChecklistItems(shoppingMemoViewModel.removeChecklistItems);

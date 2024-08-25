@@ -84,7 +84,8 @@ public class ChecklistItemDao extends DatabaseHelper {
                 ChecklistItem checklistItem = new ChecklistItem(
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)),
                         cursor.getColumnIndexOrThrow(COLUMN_IS_CHECK),
-                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME))
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_UPDATED_AT))
                 );
 
                 dataList.add(checklistItem);

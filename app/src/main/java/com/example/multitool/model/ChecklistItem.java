@@ -7,23 +7,25 @@ public class ChecklistItem {
     private boolean isChecked;
     private String name;
     private String updatedAt;
-    private String defaultName;         // 名前変更判別用
-    private Boolean defaultIsChecked;   // チェックリスト状態変更判別用
+    private final String defaultName;         // 名前変更判別用
+    private final Boolean defaultIsChecked;   // チェックリスト状態変更判別用
 
     // ユーザーの操作で新たに生成
     public ChecklistItem() {
         this.id = -1;
         this.name = "";
         this.isChecked = false;
+        this.updatedAt= "";
         defaultName = "";
         defaultIsChecked = false;
     }
 
     // dbの値から生成
-    public ChecklistItem(int id, int isChecked, String name) {
+    public ChecklistItem(int id, int isChecked, String name, String updatedAt) {
         this.id = id;
         this.isChecked = isChecked == 1;
         this.name = name;
+        this.updatedAt = updatedAt;
         defaultName = this.name;
         defaultIsChecked = this.isChecked;
     }
@@ -47,6 +49,8 @@ public class ChecklistItem {
         // 更新あり
         return true;
     }
+
+    public String getUpdatedAt() { return updatedAt; }
 
     public void setChecked(boolean checked) {
         isChecked = checked;
