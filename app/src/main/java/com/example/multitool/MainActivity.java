@@ -40,16 +40,4 @@ public class MainActivity extends AppCompatActivity {
         shoppingMemoViewModel.saveChecklistItem();
         super.onStop();
     }
-
-    // PCチェック用
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // dキーが押されたとき
-        if (keyCode == KeyEvent.KEYCODE_D) {
-            // アクティビティを終了する
-            finish();
-            return true; // イベントを消費したことを示す
-        }
-        return super.onKeyDown(keyCode, event); // 他のキーイベントは通常の動作
-    }
 }
