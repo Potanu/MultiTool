@@ -16,10 +16,4 @@
         android:name="com.example.multitool.ui.fragment.LogFragment"
         android:label="@string/log"
         tools:layout="@layout/fragment_log" />
-
-    <fragment
-        android:id="@+id/navigation_free_memo"
-        android:name="com.example.multitool.ui.fragment.FreeMemoFragment"
-        android:label="@string/free_memo"
-        tools:layout="@layout/fragment_free_memo" />
 </navigation>

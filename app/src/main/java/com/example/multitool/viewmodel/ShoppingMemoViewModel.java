@@ -8,6 +8,7 @@ import com.example.multitool.util.DataUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShoppingMemoViewModel extends ViewModel {
     public List<ChecklistItem> checklistItems;          // チェックリスト一覧のセル
@@ -44,6 +45,37 @@ public class ShoppingMemoViewModel extends ViewModel {
         String[] selectionArgs = {"1", "0"};
 
         logItems = checklistItemDao.getData(null, selection, selectionArgs);
+    }
+
+    public void saveChecklistItemPrompt(){
+        String current_time = DataUtil.getCurrentDateTime();
+
+        for (ChecklistItem item : checklistItems) {
+            if (Objects.equals(item.getName(), "") || item.getIsChecked() == 0){
+                continue;   // checkがなければスキップ
+            }
+
+            item.setUpdatedAt(current_time);
+
+            if (item.getId() == -1){
+                checklistItemDao.insertData(
+                        item.getName(),
+                        item.getIsChecked(),
+                        0,
+                        current_time
+                );
+            } else {
+                checklistItemDao.updateItem(
+                        item.getId(),
+                        item.getName(),
+                        item.getIsChecked(),
+                        0,
+                        current_time
+                );
+            }
+
+            logItems.add(item);
+        }
     }
 
     public void saveChecklistItem(){
@@ -83,5 +115,17 @@ public class ShoppingMemoViewModel extends ViewModel {
                 );
             }
         }
+    }
+
+    public boolean isCanSave(){
+        boolean isExistCheck = false;
+        for (ChecklistItem item : checklistItems) {
+            if (!Objects.equals(item.getName(), "") && item.getIsChecked() == 1){
+                isExistCheck = true;
+                break;
+            }
+        }
+
+        return isExistCheck;
     }
 }

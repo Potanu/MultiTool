@@ -53,10 +53,20 @@ public class ChecklistFragment extends Fragment {
         checklistAdapter.setChecklistItems(shoppingMemoViewModel.checklistItems);
         checklistAdapter.setRemoveChecklistItems(shoppingMemoViewModel.removeChecklistItems);
 
-        // +ボタン押下時の処理を登録
+        // 追加ボタン押下時の処理を登録
         binding.addButton.setOnClickListener(v -> {
             String currentTime = DataUtil.getCurrentDateTime();
             checklistAdapter.addItem(currentTime);
+        });
+
+        // セーブボタン押下時の処理を登録
+        binding.saveButton.setOnClickListener(v ->{
+            if (!shoppingMemoViewModel.isCanSave()){
+                return;
+            }
+
+            shoppingMemoViewModel.saveChecklistItemPrompt();
+            checklistAdapter.removeItem();
         });
     }
 

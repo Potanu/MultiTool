@@ -14,15 +14,31 @@
         android:layout_marginTop="@dimen/toolbar_vertical_size"
         android:layout_marginBottom="@dimen/toolbar_vertical_size"/>
 
-    <ImageButton
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/teal_200"
+        android:layout_marginStart="@dimen/checklist_button_margin_side"
+        android:layout_marginBottom="@dimen/checklist_button_margin_bottom"
+        android:text="@string/common_save"
+        android:textSize="@dimen/checklist_button_text_size"
+        app:backgroundTint="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    
+    <Button
         android:id="@+id/addButton"
-        android:layout_width="@dimen/checklist_add_button_size"
-        android:layout_height="@dimen/checklist_add_button_size"
-        android:layout_marginEnd="@dimen/checklist_cell_margin"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/baseline_add_circle_24"
-        android:contentDescription="@string/common_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/teal_200"
+        android:layout_marginEnd="@dimen/checklist_button_margin_side"
+        android:layout_marginBottom="@dimen/checklist_button_margin_bottom"
+        android:text="@string/common_add"
+        android:textSize="@dimen/checklist_button_text_size"
+        app:backgroundTint="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

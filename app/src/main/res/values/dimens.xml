@@ -7,19 +7,21 @@
     <!-- common -->
     <dimen name="toolbar_vertical_size">64dp</dimen>
     <dimen name="button_nav_menu_vertical_size">60dp</dimen>
-
-    <!-- fragment_memo -->
-    <dimen name="fragment_memo_vertical_margin">10dp</dimen>
+    <dimen name="ProgressBar_size">30sp</dimen>
 
     <!-- チェックリスト -->
     <dimen name="checklist_cell_margin">16dp</dimen>
     <dimen name="checklist_textarea_horizontal_margin">30dp</dimen>
     <dimen name="checklist_button_size">30dp</dimen>
     <dimen name="checklist_add_button_size">50dp</dimen>
+    <dimen name="checklist_save_button_size">50dp</dimen>
+    <dimen name="checklist_button_text_size">20sp</dimen>
+    <dimen name="checklist_button_margin_side">40dp</dimen>
+    <dimen name="checklist_button_margin_bottom">16dp</dimen>
 
     <!-- ログリスト -->
     <dimen name="log_textarea_horizontal_margin">30dp</dimen>
-    <dimen name="log_text_margin">20dp</dimen>
+    <dimen name="log_text_margin">10dp</dimen>
     <dimen name="log_text_size">14sp</dimen>
     <dimen name="log_interval_margin">16dp</dimen>
 </resources>

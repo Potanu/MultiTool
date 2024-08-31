@@ -16,6 +16,7 @@ import com.example.multitool.R;
 import com.example.multitool.model.ChecklistItem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.ViewHolder> {
     private List<ChecklistItem> checklistItems;
@@ -87,6 +88,18 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
         ChecklistItem item = new ChecklistItem();
         checklistItems.add(item);
         notifyItemInserted(checklistItems.size() - 1);
+    }
+
+    public void removeItem(){
+        for(int j = checklistItems.size() - 1; j >= 0; j--){
+            if (!Objects.equals(checklistItems.get(j).getName(), "") &&
+                    checklistItems.get(j).getIsChecked() == 1){
+                checklistItems.remove(j);
+                notifyItemRemoved(j);
+            }
+        }
+
+        notifyItemRangeChanged(0, checklistItems.size());
     }
 
     private void removeItem(int position) {

@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/toolbar_vertical_size"
     android:layout_marginBottom="@dimen/button_nav_menu_vertical_size"
-    android:orientation="vertical"
-    android:background="#EEEEEE">
+    android:orientation="vertical">
 
     <CalendarView
         android:id="@+id/logCalender"
@@ -14,23 +13,23 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/log_interval_margin"
-        android:layout_marginBottom="@dimen/log_interval_margin"
-        android:background="#FFFFFF"/>
+        android:layout_marginBottom="@dimen/log_interval_margin" />
 
     <ScrollView
+        android:id="@+id/logTextScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginBottom="@dimen/log_interval_margin"
         android:layout_marginHorizontal="@dimen/log_textarea_horizontal_margin"
-        android:layout_gravity="bottom"
-        android:background="#FFFFFF">
+        android:layout_gravity="bottom">
 
         <TextView
             android:id="@+id/logText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/log_text_margin"
+            android:paddingTop="@dimen/log_text_margin"
+            android:paddingBottom="@dimen/log_text_margin"
             android:layout_marginHorizontal="@dimen/log_text_margin"/>
     </ScrollView>
 

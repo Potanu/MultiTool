@@ -12,7 +12,4 @@ public class LogItem {
     public String getName(){
         return name;
     }
-
-    public String getUpdatedAt() { return updatedAt; }
-
 }

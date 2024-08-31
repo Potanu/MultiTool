@@ -1,14 +1,17 @@
 package com.example.multitool.ui.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -52,6 +55,23 @@ public class LogFragment extends Fragment {
         textView = view.findViewById(R.id.logText);
         CalendarView calendarView = view.findViewById(R.id.logCalender);
         calendarView.setDate(new Date().getTime());
+
+        // カレンダーの背景色を設定
+        Configuration config = getResources().getConfiguration();
+        int nightMode = config.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        int logThemeColor;
+        if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
+            // ダークモード
+            logThemeColor = ContextCompat.getColor(view.getContext(), R.color.dark_gray);
+        } else {
+            // ライトモード
+            logThemeColor = ContextCompat.getColor(view.getContext(), R.color.light_gray);
+        }
+        calendarView.setBackgroundColor(logThemeColor);
+
+        // テキストエリアの背景色を設定
+        ScrollView scrollView = view.findViewById(R.id.logTextScrollView);
+        scrollView.setBackgroundColor(logThemeColor);
 
         // カレンダーをクリックしたときの処理を登録
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -106,7 +126,7 @@ public class LogFragment extends Fragment {
             text = new StringBuilder(String.format(format, targetItems.get(0).getName()));
         } else {
             for (int j = 0; j < targetItems.size(); j++) {
-                String format = "\n%s";
+                String format = "\r\n%s";
                 if (j == 0){
                     format = "%s";
                 }

@@ -59,4 +59,6 @@ public class ChecklistItem {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setUpdatedAt(String updatedAt) {this.updatedAt = updatedAt;}
 }
