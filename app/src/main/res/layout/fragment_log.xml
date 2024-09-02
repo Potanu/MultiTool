@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +8,10 @@
     android:layout_marginBottom="@dimen/button_nav_menu_vertical_size"
     android:orientation="vertical">
 
-    <CalendarView
+    <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/logCalender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="@dimen/log_interval_margin"
         android:layout_marginBottom="@dimen/log_interval_margin" />
 

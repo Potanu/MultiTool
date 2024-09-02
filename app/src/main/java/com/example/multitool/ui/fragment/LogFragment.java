@@ -2,10 +2,12 @@ package com.example.multitool.ui.fragment;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -16,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.applandeo.materialcalendarview.CalendarDay;
+import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener;
 import com.example.multitool.R;
 import com.example.multitool.databinding.FragmentLogBinding;
 import com.example.multitool.model.ChecklistItem;
@@ -26,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -54,9 +58,21 @@ public class LogFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         textView = view.findViewById(R.id.logText);
         CalendarView calendarView = view.findViewById(R.id.logCalender);
-        calendarView.setDate(new Date().getTime());
+        calendarView.setCalendarDays(getMarkingDays());
 
-        // カレンダーの背景色を設定
+        // カレンダーをクリックしたときの処理を登録
+        calendarView.setOnCalendarDayClickListener(new OnCalendarDayClickListener() {
+            @Override
+            public void onClick(@NonNull CalendarDay calendarDay){
+                Calendar clickedDayCalendar = calendarDay.getCalendar();
+                int year = clickedDayCalendar.get(Calendar.YEAR);
+                int month = clickedDayCalendar.get(Calendar.MONTH);
+                int day = clickedDayCalendar.get(Calendar.DAY_OF_MONTH);
+                updateTextForDate(year, month, day);
+            }
+        });
+
+        // テキストエリアの背景色を設定
         Configuration config = getResources().getConfiguration();
         int nightMode = config.uiMode & Configuration.UI_MODE_NIGHT_MASK;
         int logThemeColor;
@@ -67,19 +83,9 @@ public class LogFragment extends Fragment {
             // ライトモード
             logThemeColor = ContextCompat.getColor(view.getContext(), R.color.light_gray);
         }
-        calendarView.setBackgroundColor(logThemeColor);
 
-        // テキストエリアの背景色を設定
         ScrollView scrollView = view.findViewById(R.id.logTextScrollView);
         scrollView.setBackgroundColor(logThemeColor);
-
-        // カレンダーをクリックしたときの処理を登録
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
-                updateTextForDate(year, month, day);
-            }
-        });
 
         // 今日の日付を選択
         Calendar calendar = Calendar.getInstance();
@@ -93,7 +99,7 @@ public class LogFragment extends Fragment {
     // ログテキストを更新
     private void updateTextForDate(int year, int month, int day) {
         List<ChecklistItem> targetItems = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         for (ChecklistItem item : shoppingMemoViewModel.logItems){
             try {
                 // ChecklistItemデータの日時を取得する
@@ -114,29 +120,54 @@ public class LogFragment extends Fragment {
             }
         }
 
+        String dateText = String.format(Locale.JAPAN, "%02d/%02d/%02d", year, month, day);
+        SpannableString spannableString = new SpannableString(dateText);    // 日付に下線を引く
+        spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         if (targetItems.size() == 0){
-            textView.setText("");
+            textView.setText(spannableString);
             return;
         }
 
         // テキストの生成
         StringBuilder text = new StringBuilder();
-        if (targetItems.size() == 1){
-            String format = "%s";  // 例: 24/01/01　米
-            text = new StringBuilder(String.format(format, targetItems.get(0).getName()));
-        } else {
-            for (int j = 0; j < targetItems.size(); j++) {
-                String format = "\r\n%s";
-                if (j == 0){
-                    format = "%s";
-                }
+        for (int j = 0; j < targetItems.size(); j++) {
+            String format = "\r\n%s";
+            text.append(String.format(format, targetItems.get(j).getName()));
+        }
 
-                text.append(String.format(format, targetItems.get(j).getName()));
+        SpannableString spannableString2 = new SpannableString(dateText + text);
+        spannableString2.setSpan(new UnderlineSpan(), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(spannableString2);
+    }
+
+    // 購入した日にちのリストを返す
+    private List<CalendarDay> getMarkingDays(){
+        List<CalendarDay> calendarDayList = new ArrayList<>();
+
+        // 重複しない日にちリストを作成する
+        Set<Date> dateList = new LinkedHashSet<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+        for (ChecklistItem item : shoppingMemoViewModel.logItems){
+            try {
+                Date date = sdf.parse(item.getUpdatedAt());
+                dateList.add(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return calendarDayList;
             }
         }
 
-        // 表示
-        textView.setText(text.toString());
+        for (Date date : dateList){
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            CalendarDay day = new CalendarDay(calendar);
+            day.setImageResource(R.drawable.calendar_icon);
+            calendarDayList.add(day);
+        }
+
+        return calendarDayList;
     }
 
     @Override
