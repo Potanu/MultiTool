@@ -7,7 +7,6 @@
     <!-- common -->
     <dimen name="toolbar_vertical_size">64dp</dimen>
     <dimen name="button_nav_menu_vertical_size">60dp</dimen>
-    <dimen name="ProgressBar_size">30sp</dimen>
 
     <!-- チェックリスト -->
     <dimen name="checklist_cell_margin">16dp</dimen>

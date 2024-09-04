@@ -21,9 +21,15 @@ import java.util.Objects;
 public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.ViewHolder> {
     private List<ChecklistItem> checklistItems;
     private List<ChecklistItem> removeChecklistItems;
+    private Runnable onChangeCheckboxAction;
 
     public ChecklistAdapter(List<ChecklistItem> checklistItems) {
         this.checklistItems = checklistItems;
+    }
+
+    // セルが更新されたときの処理を登録する
+    public void setOnChangeDataAction(Runnable action){
+        onChangeCheckboxAction = action;
     }
 
     @NonNull
@@ -42,11 +48,16 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // データモデルを更新する
             checklistItems.get(holder.getAbsoluteAdapterPosition()).setChecked(isChecked);
+
+            if (onChangeCheckboxAction != null){
+                onChangeCheckboxAction.run();
+            }
         });
 
         // 削除ボタンの設定
         holder.removeButton.setOnClickListener(v -> {
             removeItem(position);
+            onChangeCheckboxAction.run();
         });
 
         // EditTextの設定
@@ -64,6 +75,7 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
             public void afterTextChanged(Editable s) {
                 // データモデルを更新する
                 checklistItems.get(holder.getAbsoluteAdapterPosition()).setName(s.toString());
+                onChangeCheckboxAction.run();
             }
         });
     }

@@ -47,6 +47,7 @@ public class ShoppingMemoViewModel extends ViewModel {
         logItems = checklistItemDao.getData(null, selection, selectionArgs);
     }
 
+    // セーブボタンを押したときの処理
     public void saveChecklistItemPrompt(){
         String current_time = DataUtil.getCurrentDateTime();
 
@@ -78,6 +79,7 @@ public class ShoppingMemoViewModel extends ViewModel {
         }
     }
 
+    // アプリ終了時に呼ばれるセーブ処理
     public void saveChecklistItem(){
         String current_time = DataUtil.getCurrentDateTime();
 

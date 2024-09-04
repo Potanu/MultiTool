@@ -60,6 +60,11 @@ public class LogFragment extends Fragment {
         CalendarView calendarView = view.findViewById(R.id.logCalender);
         calendarView.setCalendarDays(getMarkingDays());
 
+        // カレンダーの範囲を今月までに設定する
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.set(Calendar.DAY_OF_MONTH, maxDate.getActualMaximum(Calendar.DAY_OF_MONTH));
+        calendarView.setMaximumDate(maxDate);
+
         // カレンダーをクリックしたときの処理を登録
         calendarView.setOnCalendarDayClickListener(new OnCalendarDayClickListener() {
             @Override

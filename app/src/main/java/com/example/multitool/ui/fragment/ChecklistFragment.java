@@ -50,6 +50,7 @@ public class ChecklistFragment extends Fragment {
         checklistAdapter = new ChecklistAdapter(new ArrayList<>());
         recyclerView.setAdapter(checklistAdapter);
 
+        checklistAdapter.setOnChangeDataAction(this::setSaveButtonVisible);
         checklistAdapter.setChecklistItems(shoppingMemoViewModel.checklistItems);
         checklistAdapter.setRemoveChecklistItems(shoppingMemoViewModel.removeChecklistItems);
 
@@ -62,12 +63,23 @@ public class ChecklistFragment extends Fragment {
         // セーブボタン押下時の処理を登録
         binding.saveButton.setOnClickListener(v ->{
             if (!shoppingMemoViewModel.isCanSave()){
-                return;
+                return; // 通らないはずの処理だけど念のためチェック
             }
 
             shoppingMemoViewModel.saveChecklistItemPrompt();
             checklistAdapter.removeItem();
+            binding.saveButton.setVisibility(View.INVISIBLE);   // セーブボタンを非表示にする
         });
+
+        binding.saveButton.setVisibility(View.INVISIBLE);
+        setSaveButtonVisible();
+    }
+
+    // セーブボタンの表示管理用
+    private void setSaveButtonVisible(){
+        // 1つでもチェックが付いているセルがあれば表示する
+        int state = shoppingMemoViewModel.isCanSave() ? View.VISIBLE : View.INVISIBLE;
+        binding.saveButton.setVisibility(state);
     }
 
     @Override
