@@ -36,19 +36,28 @@ public class ChecklistItemDao extends DatabaseHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void insertData(String name, int is_check, int is_delete, String current_time) {
+    // データの挿入（返り値: ID）
+    public int insertData(String name, int is_check, int is_delete, String current_time) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Runnable action = () -> {
+        int id = -1;
+
+        try{
+            db.beginTransaction();
             ContentValues values = new ContentValues();
             values.put(COLUMN_NAME, name);
             values.put(COLUMN_IS_CHECK, is_check);
             values.put(COLUMN_IS_DELETE, is_delete);
             values.put(COLUMN_CREATED_AT, current_time);
             values.put(COLUMN_UPDATED_AT, current_time);
-            db.insert(TABLE_NAME, null, values);
-        };
+            id = (int)db.insert(TABLE_NAME, null, values);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
 
-        execTransaction(db, action);
+        return id;
     }
 
     public void updateItem(int id, String name, int is_check, int is_delete, String current_time) {

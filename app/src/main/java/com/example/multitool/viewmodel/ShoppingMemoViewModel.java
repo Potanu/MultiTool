@@ -59,12 +59,14 @@ public class ShoppingMemoViewModel extends ViewModel {
             item.setUpdatedAt(current_time);
 
             if (item.getId() == -1){
-                checklistItemDao.insertData(
+                int id = checklistItemDao.insertData(
                         item.getName(),
                         item.getIsChecked(),
                         0,
                         current_time
                 );
+
+                item.setId(id);
             } else {
                 checklistItemDao.updateItem(
                         item.getId(),
@@ -103,12 +105,14 @@ public class ShoppingMemoViewModel extends ViewModel {
             }
 
             if (item.getId() == -1){
-                checklistItemDao.insertData(
+                int id = checklistItemDao.insertData(
                         item.getName(),
                         item.getIsChecked(),
                         0,
                         current_time
                 );
+
+                item.setId(id);
             } else {
                 checklistItemDao.updateItem(
                         item.getId(),
@@ -119,8 +123,6 @@ public class ShoppingMemoViewModel extends ViewModel {
                 );
             }
         }
-
-        checklistItems.clear();
     }
 
     public boolean isCanSave(){

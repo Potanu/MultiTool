@@ -3,7 +3,7 @@ package com.example.multitool.model;
 import java.util.Objects;
 
 public class ChecklistItem {
-    private final int id;
+    private int id;
     private boolean isChecked;
     private String name;
     private String updatedAt;
@@ -52,6 +52,7 @@ public class ChecklistItem {
 
     public String getUpdatedAt() { return updatedAt; }
 
+    public void setId(int id) {this.id = id;}
     public void setChecked(boolean checked) {
         isChecked = checked;
     }
