@@ -21,6 +21,6 @@
     <!-- ログリスト -->
     <dimen name="log_textarea_horizontal_margin">30dp</dimen>
     <dimen name="log_text_margin">10dp</dimen>
-    <dimen name="log_text_size">14sp</dimen>
+    <dimen name="log_text_size">18sp</dimen>
     <dimen name="log_interval_margin">16dp</dimen>
 </resources>

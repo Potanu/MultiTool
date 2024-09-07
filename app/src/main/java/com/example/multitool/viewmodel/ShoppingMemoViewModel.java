@@ -94,6 +94,8 @@ public class ShoppingMemoViewModel extends ViewModel {
             );
         }
 
+        removeChecklistItems.clear();
+
         // データの挿入・更新
         for (ChecklistItem item : checklistItems){
             if (!item.getIsChanged()){
@@ -117,6 +119,8 @@ public class ShoppingMemoViewModel extends ViewModel {
                 );
             }
         }
+
+        checklistItems.clear();
     }
 
     public boolean isCanSave(){

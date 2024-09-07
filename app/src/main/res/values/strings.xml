@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">お買い物メモ</string>
-    <string name="shopping_memo">お買い物メモ</string>
-    <string name="log">履歴</string>
+    <string name="shopping_memo">チェックリスト</string>
+    <string name="log">ログ</string>
     <string name="common_save">購入済みにする</string>
     <string name='common_remove'>削除</string>
     <string name="common_add">追加</string>

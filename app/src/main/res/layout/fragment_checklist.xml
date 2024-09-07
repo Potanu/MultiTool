@@ -15,28 +15,28 @@
         android:layout_marginBottom="@dimen/toolbar_vertical_size"/>
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:background="@color/teal_200"
         android:layout_marginStart="@dimen/checklist_button_margin_side"
         android:layout_marginBottom="@dimen/checklist_button_margin_bottom"
-        android:text="@string/common_save"
+        android:text="@string/common_add"
         android:textSize="@dimen/checklist_button_text_size"
         app:backgroundTint="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:background="@color/teal_200"
         android:layout_marginEnd="@dimen/checklist_button_margin_side"
         android:layout_marginBottom="@dimen/checklist_button_margin_bottom"
-        android:text="@string/common_add"
+        android:text="@string/common_save"
         android:textSize="@dimen/checklist_button_text_size"
         app:backgroundTint="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"

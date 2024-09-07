@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/log_text_margin"
             android:paddingBottom="@dimen/log_text_margin"
-            android:layout_marginHorizontal="@dimen/log_text_margin"/>
+            android:layout_marginHorizontal="@dimen/log_text_margin"
+            android:textSize="@dimen/log_text_size"/>
     </ScrollView>
 
 </LinearLayout>
